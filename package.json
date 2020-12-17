@@ -1,0 +1,29 @@
+{
+    "name": "fullstack",
+    "version": "1.0.0",
+    "description": "Repo for course work",
+    "main": "index.js",
+    "scripts": {
+        "dev": "nodemon server"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/NoKare85/back-end.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/NoKare85/back-end/issues"
+    },
+    "homepage": "https://github.com/NoKare85/back-end#readme",
+    "dependencies": {
+        "express": "^4.17.1",
+        "mongoose": "^5.11.8",
+        "request": "^2.88.2"
+    },
+    "devDependencies": {
+        "dotenv": "^8.2.0",
+        "express-handlebars": "^5.2.0",
+        "nodemon": "^2.0.6"
+    }
+}

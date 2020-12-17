@@ -1,0 +1,24 @@
+GET http://localhost:3000/subscribers
+
+###
+GET http://localhost:3000/subscribers/5fda016037a8e2341cd1aed9
+
+###
+POST http://localhost:3000/subscribers
+Content-Type: application/json
+
+{
+    "name": "Some Person",
+    "subscriberToChannel": "SNL"
+}
+
+###
+PATCH http://localhost:3000/subscribers/5fda02703440fd196059af90
+Content-Type: application/json
+
+{
+    "subscriberToChannel": "John Oliver"
+}
+
+###
+DELETE http://localhost:3000/subscribers/5fda016037a8e2341cd1aed9
