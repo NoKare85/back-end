@@ -72,8 +72,4 @@ async function getTask(req, res, next) {
     next()
 }
 
-async function deleteTask(id) {
-    await Task.deleteOne(id);
-}
-
 module.exports = router;
