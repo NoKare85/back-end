@@ -1,2 +1,2 @@
-# full-stack
+# back-end
 Repo for course work
