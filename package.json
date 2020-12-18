@@ -1,6 +1,9 @@
 {
     "name": "fullstack",
     "version": "1.0.0",
+    "engines": {
+        "node": "12.16.2"
+    },
     "description": "Repo for course work",
     "main": "index.js",
     "scripts": {
