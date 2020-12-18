@@ -21,6 +21,7 @@
     },
     "homepage": "https://github.com/NoKare85/back-end#readme",
     "dependencies": {
+        "dotenv": "^8.2.0",
         "express": "^4.17.1",
         "moment": "^2.29.1",
         "mongoose": "^5.11.8",
