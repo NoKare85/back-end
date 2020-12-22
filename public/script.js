@@ -58,13 +58,11 @@ async function deleteTask(id) {
         headers: {
             'Content-Type': 'application/json'
         }
-    }).then(response => response.json())
-    .then(data => document.getElementById("console").innerHTML = "<pre>" + JSON.stringify(data, null, '\t') + "</pre>");;
+    });
     location.reload();
 }
 
 function doTask(id) {
-    console.log(id.parentElement.parentElement)
     //document.getElementById().parentElement.pare
     if (id.classList.contains('fa-check-square')) {
        id.parentElement.parentElement.style.display = "block";
@@ -95,7 +93,6 @@ async function saveUser() {
             firstname: document.getElementsByName("firstname")[0].value,
             lastname: document.getElementsByName("lastname")[0].value
         });
-    console.log(data);
     var res = await fetch("http://localhost:3000/users", {
         method: 'POST',
         headers: {
@@ -103,9 +100,6 @@ async function saveUser() {
         },
         body: data
     });
-    
-    console.log(data);
-    console.log("something");
 
     document.getElementById("firstname").classList.remove("d-block");
     document.getElementById("lastname").classList.remove("d-block");
@@ -127,7 +121,6 @@ async function showForm(id) {
         }
     });
     var obj = JSON.parse(JSON.stringify(await task.json()));
-    console.log(obj.title);
     document.getElementById("updateForm").classList.remove("d-none")
     document.getElementById("updateForm").classList.add("d-block");
     document.getElementById("id").value = obj._id;

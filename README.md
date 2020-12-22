@@ -14,4 +14,6 @@ Running the project:
 -   use 'npm run dev' to run on dev mode using nodemon
 -   use 'npm run start' to run production mode
 
+The project is also running live on Heroku https://quiet-tundra-67029.herokuapp.com/
+
 Have fun!
