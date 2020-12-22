@@ -9,7 +9,7 @@ const app = express();
 
 
 // Init middleware 
-// app.use(logger);
+app.use(logger);
 
 // Handlebars middleware
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));

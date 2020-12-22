@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+</head>
+
+<body>
+    <h1>Get all tasks</h1>
+    <button onclick=getTasks()>GET</button>
+    <h1>Get one task with ID</h1>
+    <label for="id">ID</label>
+    <input type="text" name="id">
+    <button onclick=getOneTask(event.target.previousElementSibling.value)>GET ONE</button>
+    <h1>Delete one task with ID</h1>
+    <label for="id">ID</label>
+    <input type="text" name="id">
+    <button onclick=deleteOneTask(event.target.previousElementSibling.value)>DELETE ONE</button>
+    <h1>Get all users</h1>
+    <button onclick=getUsers()>GET</button>
+    <h1>Get one user with ID</h1>
+    <label for="id">ID</label>
+    <input type="text" name="id">
+    <button onclick=getOneUser(event.target.previousElementSibling.value)>GET ONE</button>
+    <h1>Delete one user with ID</h1>
+    <label for="id">ID</label>
+    <input type="text" name="id">
+    <button onclick=deleteOneUser(event.target.previousElementSibling.value)>DELETE ONE</button>
+    <div id="console" class="container">
+    </div>
+</body>
+
+</html>

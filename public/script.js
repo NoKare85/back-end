@@ -1,10 +1,65 @@
+async function getTasks() {
+    res = await fetch("http://localhost:3000/tasks/")
+    .then(response => response.json())
+    .then(data => document.getElementById("console").innerHTML = "<pre>" + JSON.stringify(data, null, '\t') + "</pre>");
+}
+
+async function getOneTask(id) {
+    const task = await fetch("http://localhost:3000/tasks/"+id, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => response.json())
+    .then(data => document.getElementById("console").innerHTML = "<pre>" + JSON.stringify(data, null, '\t') + "</pre>");
+}
+
+async function getUsers() {
+    res = await fetch("http://localhost:3000/users/")
+    .then(response => response.json())
+    .then(data => document.getElementById("console").innerHTML = "<pre>" + JSON.stringify(data, null, '\t') + "</pre>");
+}
+
+async function getOneUser(id) {
+    const task = await fetch("http://localhost:3000/users/"+id, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => response.json())
+    .then(data => document.getElementById("console").innerHTML = "<pre>" + JSON.stringify(data, null, '\t') + "</pre>");
+}
+
+async function deleteOneUser(id) {
+    res = await fetch("http://localhost:3000/users/"+id, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }).then(response => response.json())
+    .then(data => document.getElementById("console").innerHTML = "<pre>" + JSON.stringify(data, null, '\t') + "</pre>");;
+}
+
+async function deleteOneTask(id) {
+    res = await fetch("http://localhost:3000/tasks/"+id, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }).then(response => response.json())
+    .then(data => document.getElementById("console").innerHTML = "<pre>" + JSON.stringify(data, null, '\t') + "</pre>");
+}
+
 async function deleteTask(id) {
     res = await fetch("http://localhost:3000/tasks/"+id, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json'
         }
-    });
+    }).then(response => response.json())
+    .then(data => document.getElementById("console").innerHTML = "<pre>" + JSON.stringify(data, null, '\t') + "</pre>");;
     location.reload();
 }
 
@@ -36,16 +91,21 @@ function newUser() {
 }
 
 async function saveUser() {
-    await fetch("http://localhost:3000/users", {
+    var data = JSON.stringify({
+            firstname: document.getElementsByName("firstname")[0].value,
+            lastname: document.getElementsByName("lastname")[0].value
+        });
+    console.log(data);
+    var res = await fetch("http://localhost:3000/users", {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({
-            firstname: document.getElementsByName("firstname")[0].value,
-            lastname: document.getElementsByName("lastname")[0].value
-        })
+        body: data
     });
+    
+    console.log(data);
+    console.log("something");
 
     document.getElementById("firstname").classList.remove("d-block");
     document.getElementById("lastname").classList.remove("d-block");
@@ -67,6 +127,7 @@ async function showForm(id) {
         }
     });
     var obj = JSON.parse(JSON.stringify(await task.json()));
+    console.log(obj.title);
     document.getElementById("updateForm").classList.remove("d-none")
     document.getElementById("updateForm").classList.add("d-block");
     document.getElementById("id").value = obj._id;

@@ -4,9 +4,13 @@ const express = require('express');
 const mongoose = require('mongoose');
 const exphbs = require('express-handlebars');
 const app = express();
+const logger = require('./middleware/logger');
 //const path = require('path');
 const Task = require('./models/tasks');
 const User = require('./models/users');
+
+// Init middleware 
+//app.use(logger);
 
 // Set static folder
 //app.use(express.static(path.join(__dirname, 'public')));
@@ -40,6 +44,13 @@ app.get('/', async (req, res) => {
     users
     }) 
 });
+
+// API page route
+app.use('/apipage', (req, res) => {
+    res.render('api', {
+    title: 'Api page',
+    })
+})
 
 
 

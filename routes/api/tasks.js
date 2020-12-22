@@ -1,5 +1,4 @@
 const express = require('express');
-//const { restart } = require('nodemon');
 const router = express.Router();
 const Task = require('../../models/tasks');
 
@@ -21,7 +20,6 @@ router.get('/:id', getTask, (req, res) => {
 // Create task
 router.post('/', async (req, res) => {
     if (req.body.id != null) {
-        console.log("it's not null")
         const task = await Task.findById(req.body.id);
         if (req.body.title != null) {
             task.title = req.body.title;
