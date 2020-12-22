@@ -80,7 +80,6 @@ router.delete('/:id', getTask, async (req, res) => {
 });
 
 async function getTask(req, res, next) {
-    console.log(req.params);
     let task;
     try {
         task = await Task.findById(req.params.id);

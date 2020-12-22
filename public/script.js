@@ -1,11 +1,11 @@
 async function getTasks() {
-    res = await fetch("http://localhost:3000/tasks/")
+    res = await fetch("/tasks/")
     .then(response => response.json())
     .then(data => document.getElementById("console").innerHTML = "<pre>" + JSON.stringify(data, null, '\t') + "</pre>");
 }
 
 async function getOneTask(id) {
-    const task = await fetch("http://localhost:3000/tasks/"+id, {
+    const task = await fetch("/tasks/"+id, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'
@@ -16,13 +16,13 @@ async function getOneTask(id) {
 }
 
 async function getUsers() {
-    res = await fetch("http://localhost:3000/users/")
+    res = await fetch("/users/")
     .then(response => response.json())
     .then(data => document.getElementById("console").innerHTML = "<pre>" + JSON.stringify(data, null, '\t') + "</pre>");
 }
 
 async function getOneUser(id) {
-    const task = await fetch("http://localhost:3000/users/"+id, {
+    const task = await fetch("/users/"+id, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'
@@ -33,7 +33,7 @@ async function getOneUser(id) {
 }
 
 async function deleteOneUser(id) {
-    res = await fetch("http://localhost:3000/users/"+id, {
+    res = await fetch("/users/"+id, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json'
@@ -43,7 +43,7 @@ async function deleteOneUser(id) {
 }
 
 async function deleteOneTask(id) {
-    res = await fetch("http://localhost:3000/tasks/"+id, {
+    res = await fetch("/tasks/"+id, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json'
@@ -53,7 +53,7 @@ async function deleteOneTask(id) {
 }
 
 async function deleteTask(id) {
-    res = await fetch("http://localhost:3000/tasks/"+id, {
+    res = await fetch("/tasks/"+id, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json'
@@ -93,7 +93,7 @@ async function saveUser() {
             firstname: document.getElementsByName("firstname")[0].value,
             lastname: document.getElementsByName("lastname")[0].value
         });
-    var res = await fetch("http://localhost:3000/users", {
+    var res = await fetch("/users", {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -114,7 +114,7 @@ async function saveUser() {
 
 async function showForm(id) {
 
-    const task = await fetch("http://localhost:3000/tasks/"+id, {
+    const task = await fetch("/tasks/"+id, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'
