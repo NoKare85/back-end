@@ -1,25 +1,92 @@
 <h1 class="text-center mb-3">
     {{title}}
 </h1>
-<form action="/api/tasks" method="POST" class="mb-4">
-    <div class="form-group">
-        <label for="title">Title</label>
-        <input type="text" name="title" class="form-control">
-    </div>
-    <div class="form-group">
-        <label for="description">Description</label>
-        <input type="text" name="description" class="form-control">
-    </div>
-    <input type="submit" value="Add Task" class="btn btn-primary btn-block mt-4">
-</form>
 <h4>Tasks</h4>
-<div class="clearfix">
-    <ul class="list-group">
+<button onclick="newTask()" class="btn btn-info">New task
+</button>
+<div id="addForm" class="d-none">
+    <form action="/api/tasks" method="POST" class="mb-4">
+        <div class="form-group">
+            <label for="assignee">Assignee</label>
+            </br>
+            <select id="name" name="assignee">
+                {{#each users}}
+                <option value={{this._id}}>{{this.firstname}} {{this.lastname}}</option>
+                {{/each}}
+            </select>
+            <button id="newuser" type="button" onclick="newUser()" class="btn btn-info mt-1">New user
+            </button>
+            <button id="saveuser" type="button" onclick="saveUser()" class="btn btn-info mt-1 d-none">Save
+            </button>
+        </div>
+        <div id="firstname" class="form-group d-none">
+            <label for="firstname">Firstname</label>
+            <input type="text" name="firstname" class="form-control">
+        </div>
+        <div id="lastname" class="form-group d-none">
+            <label for="lastname">Lastname</label>
+            <input type="text" name="lastname" class="form-control">
+        </div>
+        <div id="title" class="form-group">
+            <label for="title">Title</label>
+            <input type="text" name="title" class="form-control">
+        </div>
+        <div id="description" class="form-group">
+            <label for="description">Description</label>
+            <input type="text" name="description" class="form-control">
+        </div>
+        <input type="submit" value="Add Task" class="btn btn-primary btn-block mt-4">
+    </form>
+</div>
+</div>
+<div>
+    <table class="table table-hover">
+        <thead class="thead-light">
+            <tr>
+                <th>Assignee</th>
+                <th>Task name</th>
+                <th>Task description</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
         {{#each tasks}}
-        <li class="list-group-item">{{this.title}}: {{this.description}}
-            <button id={{this._id}} class="btn btn-danger btn-sm float-end"
-                onclick=deleteTask(event.target.id)>X</button>
-        </li>
+        <tr>
+            <td>{{this.assignee}}</td>
+            <td>{{this.title}}</td>
+            <td>{{this.description}}</td>
+            <td>
+                <button class="btn btn-danger btn-sm float-end" onclick=deleteTask(event.target.id)><i id={{this._id}}
+                        class="fa fa-trash"></i></button>
+                <button class="btn btn-info btn-sm mr-1 float-end" onclick=showForm(event.target.id)><i id={{this._id}}
+                        class="fa fa-wrench"></i></button>
+                <input type="checkbox" onclick=doTask(event.target)>
+            </td>
+        </tr>
         {{/each}}
-    </ul>
+    </table>
+</div>
+<div id="updateForm" class="d-none">
+    <form action="/api/tasks" method="POST" class="mb-4">
+        <div class="form-group">
+            <label for="id">Id</label>
+            <input id="id" type="text" name="id" class="form-control" value="Something">
+        </div>
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input id="title" type="text" name="title" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="description">Description</label>
+            <input id="description" type="text" name="description" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="assignee">Assignee</label>
+            <select id="assignee" name="assignee">
+                {{#each users}}
+                <option value={{this._id}}>{{this.firstname}} {{this.lastname}}</option>
+                {{/each}}
+        </div>
+        <input type="submit" value="Update Task" class="btn btn-primary btn-block mt-4">
+    </form>
+</div>
 </div>

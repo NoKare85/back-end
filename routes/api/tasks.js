@@ -15,13 +15,35 @@ router.get('/', async (req, res) => {
 
 // Get one task
 router.get('/:id', getTask, (req, res) => {
-    res.json(res.task);
-});
+     res.json(res.task);
+ });
+
 // Create task
 router.post('/', async (req, res) => {
+    if (req.body.id != null) {
+        console.log("it's not null")
+        const task = await Task.findById(req.body.id);
+        if (req.body.title != null) {
+            task.title = req.body.title;
+        }
+        if (req.body.description != null) {
+            task.description = req.body.description;
+        }
+        if (req.body.assignee != null) {
+            task.assignee = req.body.assignee;
+        }
+        try {
+            const updateTask = await task.save();
+            //res.json(updateTask);
+            res.redirect('/');
+        } catch (err) {
+            res.status(400).json({message: err.message});
+    };
+    } else {
     const task = new Task({
         title: req.body.title,
-        description: req.body.description
+        description: req.body.description,
+        assignee: req.body.assignee
     });
 
     try {
@@ -31,8 +53,9 @@ router.post('/', async (req, res) => {
         res.status(400).json({message: err.message});
     }
     res.redirect('/');
-});
-// Update subscriber
+    }});
+
+// Update task
 router.patch('/:id', getTask, async (req, res) => {
     if (req.body.title != null) {
         res.task.title = req.body.title;
@@ -45,9 +68,10 @@ router.patch('/:id', getTask, async (req, res) => {
         res.json(updateTask);
     } catch (err) {
         res.status(400).json({message: err.message});
-    }
+};
 });
-// Delete subscriber
+
+// Delete task
 router.delete('/:id', getTask, async (req, res) => {
     try {
         await res.task.remove();
@@ -58,6 +82,7 @@ router.delete('/:id', getTask, async (req, res) => {
 });
 
 async function getTask(req, res, next) {
+    console.log(req.params);
     let task;
     try {
         task = await Task.findById(req.params.id);
